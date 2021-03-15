@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="BOMBLAB说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求Bomb Lab主要是关于反汇编的实验，对应于书本的第三章：程序的机器级表示">
+  <meta name="description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求Bomb Lab主要是关于反汇编的实验，对应于书本的第三章：程序的机器级表示。 该实验给定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bomblab">
 <meta property="og:url" content="http://fentuoli.github.io/2020/05/05/bomblab/index.html">
 <meta property="og:site_name" content="BoRe">
-<meta property="og:description" content="BOMBLAB说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求Bomb Lab主要是关于反汇编的实验，对应于书本的第三章：程序的机器级表示">
+<meta property="og:description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求Bomb Lab主要是关于反汇编的实验，对应于书本的第三章：程序的机器级表示。 该实验给定">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/bomblab/1.PNG">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/bomblab/2.PNG">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/bomblab/23.png">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/bomblab/7.PNG">
 <meta property="article:published_time" content="2020-05-05T06:43:14.000Z">
-<meta property="article:modified_time" content="2021-03-15T08:40:01.832Z">
+<meta property="article:modified_time" content="2021-03-15T10:05:19.184Z">
 <meta property="article:author" content="般若">
 <meta property="article:tag" content="csapp">
 <meta property="article:tag" content="Lessons">
@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-15 16:40:01" itemprop="dateModified" datetime="2021-03-15T16:40:01+08:00">2021-03-15</time>
+                <time title="修改时间：2021-03-15 18:05:19" itemprop="dateModified" datetime="2021-03-15T18:05:19+08:00">2021-03-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +239,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="BOMBLAB"><a href="#BOMBLAB" class="headerlink" title="BOMBLAB"></a><center>BOMBLAB</center></h1><p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*<em>码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> *</em>，在此感谢！</p>
+        <p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*<em>码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> *</em>，在此感谢！</p>
 <h2 id="一、实验内容及要求"><a href="#一、实验内容及要求" class="headerlink" title="一、实验内容及要求"></a>一、实验内容及要求</h2><p>Bomb Lab主要是关于反汇编的实验，对应于书本的第三章：程序的机器级表示。</p>
 <p>该实验给定了一个二进制程序Bomb（炸弹）。这个炸弹由若干阶段组成，每个阶段都要求你在标准输入流中输入一个字符串，如果字符串正确，那么该阶段就会被解除并且程序会进入下一个阶段。如果字符串错误，那么炸弹会爆炸，并且退出。当每个阶段都被解除后，整个炸弹将会被解除。</p>
 <h2 id="二、实验过程分析及截图"><a href="#二、实验过程分析及截图" class="headerlink" title="二、实验过程分析及截图"></a>二、实验过程分析及截图</h2><a id="more"></a>
@@ -414,8 +414,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/05/OS%E5%AE%9E%E9%AA%8C/" rel="prev" title="OS实验">
-      <i class="fa fa-chevron-left"></i> OS实验
+    <a href="/2020/05/05/OS%E5%AE%9E%E9%AA%8C/" rel="prev" title="FAT文件系统的实现">
+      <i class="fa fa-chevron-left"></i> FAT文件系统的实现
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/05/05/cachelab/" rel="next" title="cachelab">
@@ -479,7 +479,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BOMBLAB"><span class="nav-number">1.</span> <span class="nav-text">BOMBLAB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实验内容及要求"><span class="nav-number">1.1.</span> <span class="nav-text">一、实验内容及要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验过程分析及截图"><span class="nav-number">1.2.</span> <span class="nav-text">二、实验过程分析及截图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实验准备"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.实验准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实验过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.实验过程</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实验内容及要求"><span class="nav-number">1.</span> <span class="nav-text">一、实验内容及要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验过程分析及截图"><span class="nav-number">2.</span> <span class="nav-text">二、实验过程分析及截图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实验准备"><span class="nav-number">2.1.</span> <span class="nav-text">1.实验准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实验过程"><span class="nav-number">2.2.</span> <span class="nav-text">2.实验过程</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
