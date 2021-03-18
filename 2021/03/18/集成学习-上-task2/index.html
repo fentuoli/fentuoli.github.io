@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这次学习的内容为使用sklearn构建完整的回归项目，我将datawhale提供的学习资料与李宏毅老师讲线性回归的内容相结合进行学习笔记的记录。 回归模型的基本分析Step1：定义Model(function set)Linear Model：$y&#x3D;b+\sum{w_ix_i}$ $x_i$：X的特征； $w_i$：$x_i$的权重； $b$：偏差 Step2：寻找一个损失函数评估该functio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集成学习-上-task2">
+<meta property="og:url" content="http://fentuoli.github.io/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/index.html">
+<meta property="og:site_name" content="BoRe">
+<meta property="og:description" content="这次学习的内容为使用sklearn构建完整的回归项目，我将datawhale提供的学习资料与李宏毅老师讲线性回归的内容相结合进行学习笔记的记录。 回归模型的基本分析Step1：定义Model(function set)Linear Model：$y&#x3D;b+\sum{w_ix_i}$ $x_i$：X的特征； $w_i$：$x_i$的权重； $b$：偏差 Step2：寻找一个损失函数评估该functio">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fentuoli.github.io/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/F:%5CMyblog%5Csource_posts%5Cfigs%5C1.7.png">
+<meta property="article:published_time" content="2021-03-18T05:59:09.000Z">
+<meta property="article:modified_time" content="2021-03-18T15:39:08.619Z">
+<meta property="article:author" content="般若">
+<meta property="article:tag" content="Datawhale">
+<meta property="article:tag" content="集成学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fentuoli.github.io/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/F:%5CMyblog%5Csource_posts%5Cfigs%5C1.7.png">
+
+<link rel="canonical" href="http://fentuoli.github.io/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>集成学习-上-task2 | BoRe</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BoRe</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://fentuoli.github.io/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="般若">
+      <meta itemprop="description" content="般若的blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BoRe">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          集成学习-上-task2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-18 13:59:09 / 修改时间：23:39:08" itemprop="dateCreated datePublished" datetime="2021-03-18T13:59:09+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Datawhale/" itemprop="url" rel="index"><span itemprop="name">Datawhale</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Datawhale/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">集成学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这次学习的内容为<strong>使用sklearn构建完整的回归项目</strong>，我将datawhale提供的学习资料与李宏毅老师讲线性回归的内容相结合进行学习笔记的记录。</p>
+<h4 id="回归模型的基本分析"><a href="#回归模型的基本分析" class="headerlink" title="回归模型的基本分析"></a>回归模型的基本分析</h4><h5 id="Step1：定义Model-function-set"><a href="#Step1：定义Model-function-set" class="headerlink" title="Step1：定义Model(function set)"></a>Step1：定义Model(function set)</h5><p>Linear Model：$y=b+\sum{w_ix_i}$</p>
+<p>$x_i$：X的特征；</p>
+<p>$w_i$：$x_i$的权重；</p>
+<p>$b$：偏差</p>
+<h5 id="Step2：寻找一个损失函数评估该function的好坏"><a href="#Step2：寻找一个损失函数评估该function的好坏" class="headerlink" title="Step2：寻找一个损失函数评估该function的好坏"></a>Step2：寻找一个损失函数评估该function的好坏</h5><p>$x^i$：用上标来表示一个完整的object的编号，$x^i$表示第i只宝可梦</p>
+<p>$\hat{y}^i$：用$\hat{y}$表示一个实际观察到的object输出，上标为i表示是第i个object</p>
+<p>定义Loss function：$L(f)=L(w,b)$，用来<strong>衡量一组参数的好坏</strong></p>
+<p>input: a function</p>
+<p>output: how bad/good it is</p>
+<p>用估测误差来衡量：$L(f)=L(w,b)=\sum^{10}<em>{n=1}(\hat{y}^n-(b+w*x^n</em>{cp}))^2$</p>
+<h5 id="Step3：寻找一个最好的function"><a href="#Step3：寻找一个最好的function" class="headerlink" title="Step3：寻找一个最好的function"></a>Step3：寻找一个最好的function</h5><p>$f^*=argmin_f(f)$</p>
+<p>(a) 一个普遍的方法——gradient descent(梯度下降法)，要求：L(f)是可微分的</p>
+<ul>
+<li><p>首先随机选一个初始的点$w^0$</p>
+</li>
+<li><p>计算L在$w=w^0$的位置的微分，即$\frac{dL}{dw}|_{w=w^0}$，几何意义是切线的斜率</p>
+</li>
+<li><p>如果斜率为负，则使w变大，即向右踏一步；如果斜率为正，则使w变小，即向左踏一步，每一步的步长就是w的改变量</p>
+<p>w的改变量取决于：</p>
+<ul>
+<li>现在的微分值$\frac{dL}{dw}$有多⼤， 微分值越大代表现在在⼀个越陡峭的地方， 那它要移动的距离就越大， 反之就越小</li>
+<li>常数项$\eta$， 被称为learning rate， 即学习率， 它决定了每次踏出的step size不只取决于现在的斜率， 还取决于⼀个事先就定好的数值， 如果learning rate⽐较⼤， 那每踏出⼀步 的时候， 参数w更新的幅度就⽐较⼤， 反之参数更新的幅度就比较小，如果learning rate设置的⼤⼀些， 那机器学习的速度就会⽐较快； 但是learning rate如果太大， 可能就会跳过最合适的global minima的点</li>
+</ul>
+</li>
+<li><p>因此每次参数更新的大小是$\frac{dL}{dw}$， 为了满足斜率为负时w变大， 斜率为正时w变小， 应当使原来的w减去更新的数值，即：</p>
+<p>$w^1=w^0-\eta\frac{dL}{dw}|_{w=w^0}$</p>
+<p>$…$</p>
+<p>$w^{i+1}=w^i-\eta\frac{dL}{dw}|_{w=w^i}$</p>
+<p>$if(\frac{dL}{dw}|_{w=w^i}==0)\quad then \quad stop;$</p>
+<p>注：此时有可能找到的是local minima，但在linear regression上，没有local minima，因此可以使用这个方法</p>
+</li>
+</ul>
+<p>(b) 最小二乘估计：</p>
+<p>将模型的具体形式写为：$y=f(w)=w^Tx$<br>$$<br>L(w) = \sum\limits_{i=1}^{N}||w^Tx_i-y_i||<em>2^2=\sum\limits</em>{i=1}^{N}(w^Tx_i-y_i)^2\<br>= (w^TX^T-Y^T)(w^TX^T-Y^T)^T = w^TX^TXw - 2w^TX^TY+YY^T\<br>   因此，我们需要找到使得L(w)最小时对应的参数w，即：\<br>   w = argmin;L(w)\<br>   为了达到求解最小化L(w)问题，我们应用高等数学的知识，使用求导来解决这个问题： \<br>   \frac{\partial L(w)}{\partial w} = 2X^TXw-2X^TY = 0,因此： \<br>   w = (X^TX)^{-1}X^TY<br>$$</p>
+<h4 id="线性回归的推广"><a href="#线性回归的推广" class="headerlink" title="线性回归的推广"></a>线性回归的推广</h4><h5 id="多项式回归："><a href="#多项式回归：" class="headerlink" title="多项式回归："></a>多项式回归：</h5><p>将：<br>$$<br>y_i = w_0 + w_1x_i + \epsilon_i<br>$$</p>
+<p>换成一个多项式函数：</p>
+<p>$$<br>y_i = w_0 + w_1x_i + w_2x_i^2 + …+w_dx_i^d + \epsilon<br>$$</p>
+<h5 id="广义可加模型-GAM-："><a href="#广义可加模型-GAM-：" class="headerlink" title="广义可加模型(GAM)："></a>广义可加模型(GAM)：</h5><p>广义可加模型GAM实际上是线性模型推广至非线性模型的一个框架，在这个框架中，每一个变量都用一个非线性函数来代替，但是模型本身保持整体可加性。GAM模型不仅仅可以用在线性回归的推广，还可以将线性分类模型进行推广。具体的推广形式是：<br>标准的线性回归模型：<br>$$<br>   y_i = w_0 + w_1x_{i1} +…+w_px_{ip} + \epsilon_i<br>$$</p>
+<p>GAM模型框架：     </p>
+<p>$$<br>y_i = w_0 + \sum\limits_{j=1}^{p}f_{j}(x_{ij}) + \epsilon_i<br>$$</p>
+<h5 id="回归树："><a href="#回归树：" class="headerlink" title="回归树："></a>回归树：</h5><p>基于树的回归方法主要是依据分层和分割的方式将特征空间划分为一系列简单的区域。对某个给定的待预测的自变量，用他所属区域中训练集的<strong>平均数或者众数</strong>对其进行预测。由于划分特征空间的分裂规则可以用树的形式进行概括，因此这类方法称为决策树方法。决策树由结点(node)和有向边(diredcted edge)组成。结点有两种类型：内部结点(internal node)和叶结点(leaf node)。内部结点表示一个特征或属性，叶结点表示一个类别或者某个值。区域$R_1,R_2$等称为叶节点，将特征空间分开的点为内部节点。</p>
+<p><img src="/2021/03/18/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task2/F:%5CMyblog%5Csource_posts%5Cfigs%5C1.7.png" alt="1.7"></p>
+<p>建立回归树的过程大致可以分为以下两步：<br>      - 将自变量的特征空间(即$x^{(1)},x^{(2)},x^{(3)},…,x^{(p)}$)的可能取值构成的集合分割成J个互不重叠的区域$R_1,R_2,…,R_j$。<br>            - 对落入区域$R_j$的每个观测值作相同的预测，预测值等于$R_j$上训练集的因变量的简单算术平均。</p>
+<h5 id="支持向量机回归-SVR-："><a href="#支持向量机回归-SVR-：" class="headerlink" title="支持向量机回归(SVR)："></a>支持向量机回归(SVR)：</h5><p>SVR涉及诸多数学推导，在这里就不一一摘抄，感兴趣的同学可以直接看Github上</p>
+<p>组队学习的内容。</p>
+<h4 id="Sklearn的使用"><a href="#Sklearn的使用" class="headerlink" title="Sklearn的使用"></a>Sklearn的使用</h4><h5 id="线性回归："><a href="#线性回归：" class="headerlink" title="线性回归："></a>线性回归：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model      <span class="comment"># 引入线性回归方法</span></span><br><span class="line">lin_reg = linear_model.LinearRegression()       <span class="comment"># 创建线性回归的类</span></span><br><span class="line">lin_reg.fit(X,y)        <span class="comment"># 输入特征X和因变量y进行训练</span></span><br><span class="line">print(<span class="string">"模型系数："</span>,lin_reg.coef_)             <span class="comment"># 输出模型的系数</span></span><br><span class="line">print(<span class="string">"模型得分："</span>,lin_reg.score(X,y))    <span class="comment"># 输出模型的决定系数R^2</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="多项式回归：-1"><a href="#多项式回归：-1" class="headerlink" title="多项式回归："></a>多项式回归：</h5><p>sklearn.preprocessing.PolynomialFeatures(degree=2, *, interaction_only=False, include_bias=True, order=’C’):               </p>
+<ul>
+<li>参数：<br> degree：特征转换的阶数。<br> interaction_onlyboolean：是否只包含交互项，默认False 。<br> include_bias：是否包含截距项，默认True。<br> order：str in {‘C’, ‘F’}, default ‘C’，输出数组的顺序。 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line">X_arr = np.arange(<span class="number">6</span>).reshape(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">print(<span class="string">"原始X为：\n"</span>,X_arr)</span><br><span class="line"></span><br><span class="line">poly = PolynomialFeatures(<span class="number">2</span>)</span><br><span class="line">print(<span class="string">"2次转化X：\n"</span>,poly.fit_transform(X_arr))</span><br><span class="line"></span><br><span class="line">poly = PolynomialFeatures(interaction_only=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">"2次转化X：\n"</span>,poly.fit_transform(X_arr))</span><br></pre></td></tr></table></figure>
+
+<h5 id="回归树：-1"><a href="#回归树：-1" class="headerlink" title="回归树："></a>回归树：</h5><p>sklearn.tree.DecisionTreeRegressor(*, criterion=’mse’, splitter=’best’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=’deprecated’, ccp_alpha=0.0）                                                 </p>
+<ul>
+<li>参数：(列举几个重要的，常用的，详情请看上面的官网)<br> criterion：{“ mse”，“ friedman_mse”，“ mae”}，默认=“ mse”。衡量分割标准的函数 。<br> splitter：{“best”, “random”}, default=”best”。分割方式。<br> max_depth：树的最大深度。<br> min_samples_split：拆分内部节点所需的最少样本数，默认是2。<br> min_samples_leaf：在叶节点处需要的最小样本数。默认是1。<br> min_weight_fraction_leaf：在所有叶节点处（所有输入样本）的权重总和中的最小加权分数。如果未提供sample_weight，则样本的权重相等。默认是0。 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor    </span><br><span class="line">reg_tree = DecisionTreeRegressor(criterion = <span class="string">"mse"</span>,min_samples_leaf = <span class="number">5</span>)</span><br><span class="line">reg_tree.fit(X,y)</span><br><span class="line">reg_tree.score(X,y)</span><br></pre></td></tr></table></figure>
+
+<h5 id="SVR："><a href="#SVR：" class="headerlink" title="SVR："></a>SVR：</h5><p>sklearn.svm.SVR(*, kernel=’rbf’, degree=3, gamma=’scale’, coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)            </p>
+<ul>
+<li>参数：<br> kernel：核函数，{‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’}, 默认=’rbf’。(后面会详细介绍)<br> degree：多项式核函数的阶数。默认 = 3。<br> C：正则化参数，默认=1.0。(后面会详细介绍)<br> epsilon：SVR模型允许的不计算误差的邻域大小。默认0.1。    </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVR</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler     <span class="comment"># 标准化数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline   <span class="comment"># 使用管道，把预处理和模型形成一个流程</span></span><br><span class="line"></span><br><span class="line">reg_svr = make_pipeline(StandardScaler(), SVR(C=<span class="number">1.0</span>, epsilon=<span class="number">0.2</span>))</span><br><span class="line">reg_svr.fit(X, y)</span><br><span class="line">reg_svr.score(X,y)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Datawhale/" rel="tag"># Datawhale</a>
+              <a href="/tags/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="tag"># 集成学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/15/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-day1/" rel="prev" title="集成学习(上)-day1-机器学习初探">
+      <i class="fa fa-chevron-left"></i> 集成学习(上)-day1-机器学习初探
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#回归模型的基本分析"><span class="nav-number">1.</span> <span class="nav-text">回归模型的基本分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step1：定义Model-function-set"><span class="nav-number">1.1.</span> <span class="nav-text">Step1：定义Model(function set)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step2：寻找一个损失函数评估该function的好坏"><span class="nav-number">1.2.</span> <span class="nav-text">Step2：寻找一个损失函数评估该function的好坏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step3：寻找一个最好的function"><span class="nav-number">1.3.</span> <span class="nav-text">Step3：寻找一个最好的function</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线性回归的推广"><span class="nav-number">2.</span> <span class="nav-text">线性回归的推广</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多项式回归："><span class="nav-number">2.1.</span> <span class="nav-text">多项式回归：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#广义可加模型-GAM-："><span class="nav-number">2.2.</span> <span class="nav-text">广义可加模型(GAM)：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回归树："><span class="nav-number">2.3.</span> <span class="nav-text">回归树：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#支持向量机回归-SVR-："><span class="nav-number">2.4.</span> <span class="nav-text">支持向量机回归(SVR)：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sklearn的使用"><span class="nav-number">3.</span> <span class="nav-text">Sklearn的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性回归："><span class="nav-number">3.1.</span> <span class="nav-text">线性回归：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多项式回归：-1"><span class="nav-number">3.2.</span> <span class="nav-text">多项式回归：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回归树：-1"><span class="nav-number">3.3.</span> <span class="nav-text">回归树：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SVR："><span class="nav-number">3.4.</span> <span class="nav-text">SVR：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">般若</p>
+  <div class="site-description" itemprop="description">般若的blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BoRe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
