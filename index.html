@@ -267,7 +267,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：17:00:00" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
+              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：19:23:01" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,7 +294,93 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>这次学习的内容为<strong>偏差与方差理论</strong>，我将datawhale提供的学习资料与李宏毅老师课程的内容相结合进行学习笔记的记录。</p>
+<h4 id="Error的来源"><a href="#Error的来源" class="headerlink" title="Error的来源"></a>Error的来源</h4><ul>
+<li>bias</li>
+<li>variance</li>
+</ul>
+<p>bias：偏差；variance：方差 -&gt; 实际上对应着物理实验中系统误差和随机误差的概念，假设有n组数据，每一组数据都会产生一个相应的$f^<em>$，此时bias表示所有$f^</em>$的平均落靶位置和真值靶心的距离，variance表示这些$f^*$的集中程度。</p>
+<p>由于我们只有有限组样本，样本均值的期望是总体均值，样本方差的期望是总体方差，我们用样本均值来估测总体均值，样本方差来估测总体方差。</p>
+<h4 id="如何选择一个Function"><a href="#如何选择一个Function" class="headerlink" title="如何选择一个Function"></a>如何选择一个Function</h4><h5 id="1-bias与vaiance的权衡"><a href="#1-bias与vaiance的权衡" class="headerlink" title="1.bias与vaiance的权衡"></a>1.bias与vaiance的权衡</h5><p>最好的function$f^*$：取决于model的复杂程度以及data的数量，即bias与vaiance的权衡</p>
+<p>可以证明：           </p>
+<script type="math/tex; mode=display">
+E\left(y_{0}-\hat{f}\left(x_{0}\right)\right)^{2}=\operatorname{Var}\left(\hat{f}\left(x_{0}\right)\right)+\left[\operatorname{Bias}\left(\hat{f}\left(x_{0}\right)\right)\right]^{2}+\operatorname{Var}(\varepsilon)</script><h6 id="f-的variance取决于model的复杂程度和data的数量"><a href="#f-的variance取决于model的复杂程度和data的数量" class="headerlink" title="$f^*$的variance取决于model的复杂程度和data的数量"></a>$f^*$的variance取决于model的复杂程度和data的数量</h6><p>$f^<em>$的variance是由model决定的，一个简单的model在不同的training data下可以获得比较稳定分布的$f^</em>$，而复杂的model在不同的training data下的分布比较杂乱(如果data足够多，那复杂的model也可以得到比较稳定的分布)</p>
+<p>如果采用比较简单的model，那么每次在不同data下的实验所得到的不同的$f^*$之间的variance是比较小的，就好像说，你在射击的时候，每次击中的位置是差不多的</p>
+<p>但是如果model比较复杂，那么每次在不同data下的实验所得到的不同的$f^*$之间的variance是比较大的，它的散布就会比较开</p>
+<blockquote>
+<p>那为什么比较复杂的model，它的散布就比较开呢？比较简单的model，它的散布就比较密集呢？</p>
+</blockquote>
+<p>原因其实很简单，简单的model实际上就是没有高次项的model，或者高次项的系数非常小的model，这样的model表现得相当平滑，受到不同的data的影响是比较小的</p>
+<p>举一个很极端的例子，我们的整个model(function set)里面，就一个function：f=c，这个function只有一个常数项，因此无论training data怎么变化，从这个最简单的model里找出来的$f^*$都是一样的，它的variance就是等于0</p>
+<h6 id="f-的bias只取决于model的复杂程度"><a href="#f-的bias只取决于model的复杂程度" class="headerlink" title="$f^*$的bias只取决于model的复杂程度"></a>$f^*$的bias只取决于model的复杂程度</h6><p>bias是说，我们把所有的$f^<em>$平均起来得到$E(f^</em>)=\overline{f^<em>}$，这个$\overline{f^</em>}$与真值$\widehat{f}$有多接近</p>
+<p>根据实验可以证明：</p>
+<ul>
+<li><p>当model比较简单的时候，每次实验得到的$f^<em>$之间的variance会比较小，这些$f^</em>$会稳定在一个范围内，但是它们的平均值$\overline{f}$距离真实值$\widehat{f}$会有比较大的偏差；</p>
+</li>
+<li><p>当model比较复杂的时候，每次实验得到的$f^<em>$之间的variance会比较大，实际体现出来就是每次重新实验得到的$f^</em>$都会与之前得到的有较大差距，但是这些差距较大的$f^*$的平均值$\overline{f}$却和真实值$\widehat{f}$比较接近</p>
+</li>
+</ul>
+<h5 id="2-bias和variance对error的影响"><a href="#2-bias和variance对error的影响" class="headerlink" title="2.bias和variance对error的影响"></a>2.bias和variance对error的影响</h5><p>随着model的逐渐复杂：</p>
+<ul>
+<li>bias逐渐减小，bias所造成的error也逐渐下降</li>
+<li>variance逐渐变大，variance所造成的error也逐渐增大</li>
+<li>当bias和variance这两项同时被考虑的时候，即为bias和variance的error之和最小的点，就是表现最好的model</li>
+<li>如果实际error主要来自于variance很大，这个状况就是overfitting<strong>过拟合</strong>；如果实际error主要来自于bias很大，这个状况就是underfitting<strong>欠拟合</strong></li>
+</ul>
+<h5 id="3-区分过拟合与欠拟合"><a href="#3-区分过拟合与欠拟合" class="headerlink" title="3.区分过拟合与欠拟合"></a>3.区分过拟合与欠拟合</h5><ul>
+<li>如果采样的样本点大部分没有在model训练出来的$f^*$上，说明这个model太简单，bias比较大，是欠拟合</li>
+<li>如果样本点基本都在model训练出来的$f^*$上，但是testing data上测试得到的error很大，说明这个model太复杂，variance比较大，是过拟合</li>
+</ul>
+<h5 id="4-如何处理过拟合or欠拟合"><a href="#4-如何处理过拟合or欠拟合" class="headerlink" title="4.如何处理过拟合or欠拟合"></a>4.如何处理过拟合or欠拟合</h5><ul>
+<li><p>当bias比较大时，需要做的是重新设计model，包括考虑添加新的input变量，考虑给model添加高次项；然后对每一个model对应的$f^*$计算出error，选择error值最小的model(随model变复杂，bias会减小，variance会增加，因此这里分别计算error，取两者平衡点)</p>
+</li>
+<li><p>当variance比较大时，一个很好的办法是<strong>增加data</strong>(可以凭借经验自己generate data)，当data数量足够时，得到的$f^*$实际上是比较集中的；</p>
+<p>如果现实中没有办法collect更多的data，那么就采用<strong>regularization正规化</strong>(下文有提)的方法，以曲线的平滑度为条件控制model的范围，用weight控制平滑度阈值(如果不加以控制，会造成bias变大)，使得最终的model既包含真正的function，variance又不会太大</p>
+</li>
+</ul>
+<h4 id="如何减少测试误差"><a href="#如何减少测试误差" class="headerlink" title="如何减少测试误差"></a>如何减少测试误差</h4><h5 id="估计测试误差"><a href="#估计测试误差" class="headerlink" title="估计测试误差"></a>估计测试误差</h5><ul>
+<li><p>训练误差修正</p>
+<p>前面的讨论我们已经知道，模型越复杂，训练误差越小，测试误差先减后增。因此，我们先构造一个特征较多的模型使其过拟合，此时训练误差很小而测试误差很大，那这时我们加入关于特征个数的惩罚。因此，当我们的训练误差随着特征个数的增加而减少时，惩罚项因为特征数量的增加而增大，抑制了训练误差随着特征个数的增加而无休止地减小。具体的数学量如下：             </p>
+<pre><code>  $C_p = \frac{1}{N}(RSS  +  2d\hat{\sigma}^2)$，其中d为模型特征个数，$RSS = \sum\limits_{i=1}^{N}(y_i-\hat{f}(x_i))^2$，$\hat{\sigma}^2$为模型预测误差的方差的估计值，即残差的方差。                       
+  AIC赤池信息量准则：$AIC = \frac{1}{d\hat{\sigma}^2}(RSS  +  2d\hat{\sigma}^2)$                              
+  BIC贝叶斯信息量准则：$BIC = \frac{1}{n}(RSS + log(n)d\hat{\sigma}^2)$  
+</code></pre></li>
+<li><p>交叉验证</p>
+<p>前面讨论的对训练误差修正得到测试误差的估计是间接方法，这种方法的桥梁是训练误差，而交叉验证则是对测试误差的直接估计。交叉验证比训练误差修正的优势在于：能够给出测试误差的一个直接估计。在这里只介绍K折交叉验证：我们把训练样本分成K等分，然后用K-1个样本集当做训练集，剩下的一份样本集为验证集去估计由K-1个样本集得到的模型的精度，这个过程重复K次取平均值得到测试误差的一个估计</p>
+<p><strong>采用交叉验证的实际操作过程：</strong></p>
+<blockquote>
+<p>training data(训练集) -&gt; 自己的testing data(测试集) -&gt; 实际的testing data (该流程没有考虑自己的testing data的bias)</p>
+<p>training set(部分训练集) -&gt; validation set(部分验证集) -&gt; 重复K次取平均-&gt;自己的testing data(测试集) -&gt; 实际的testing data (该流程使用自己的testing data和validation来模拟testing data的bias误差，可以真实地反映出在实际的data上出现的error)</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="减少测试误差的方法"><a href="#减少测试误差的方法" class="headerlink" title="减少测试误差的方法"></a>减少测试误差的方法</h5><ul>
+<li><p>最优子集选择</p>
+<p>(i) 记不含任何特征的模型为$M_0$，计算这个$M_0$的测试误差。<br>(ii) 在$M_0$基础上增加一个变量，计算p个模型的RSS，选择RSS最小的模型记作$M_1$，并计算该模型$M_1$的测试误差。                                          </p>
+<p>(iii) 再增加变量，计算p-1个模型的RSS，并选择RSS最小的模型记作$M_2$，并计算该模型$M_2$的测试误差。                                                (iv) 重复以上过程知道拟合的模型有p个特征为止，并选择p+1个模型$\{M_0,M_1,…,M_p \}$中测试误差最小的模型作为最优模型。</p>
+</li>
+<li><p>向前逐步选择</p>
+<p>最优子集选择虽然在原理上很直观，但是随着数据特征维度p的增加，子集的数量为$2^p$，计算效率非常低下且需要的计算内存也很高，在大数据的背景下显然不适用。因此，我们需要把最优子集选择的运算效率提高，因此向前逐步选择算法的过程如下：<br>(i) 记不含任何特征的模型为$M_0$，计算这个$M_0$的测试误差。<br>(ii) 在$M_0$基础上增加一个变量，计算p个模型的RSS，选择RSS最小的模型记作$M_1$，并计算该模型$M_1$的测试误差。<br>(iii) 在最小的RSS模型下继续增加一个变量，选择RSS最小的模型记作$M_2$，并计算该模型$M_2$的测试误差。<br>(iv) 以此类推，重复以上过程知道拟合的模型有p个特征为止，并选择p+1个模型$\{M_0,M_1,…,M_p \}$中测试误差最小的模型作为最优模型。 </p>
+</li>
+<li><p>正则化</p>
+<ul>
+<li><p>L2正则化</p>
+<p>线性回归中，我们的损失函数为$J(w) = \sum\limits_{i=1}^{N}(y_i-w_0-\sum\limits_{j=1}^{p}w_jx_{ij})^2$，我们在线性回归的损失函数的基础上添加对系数的约束或者惩罚，即：                           </p>
+<script type="math/tex; mode=display">
+     J(w) = \sum\limits_{i=1}^{N}(y_i-w_0-\sum\limits_{j=1}^{p}w_jx_{ij})^2 + \lambda\sum\limits_{j=1}^{p}w_j^2,\;\;其中，\lambda \ge 0\\
+     \hat{w} = (X^TX + \lambda I)^{-1}X^TY</script><p>调节参数$\lambda$的大小是影响压缩估计的关键，$\lambda$越大，惩罚的力度越大，系数则越趋近于0。</p>
+</li>
+<li><p>L1正则化</p>
+<p>L2正则化一个很显著的特点是：将模型的系数往零的方向压缩，但是岭回归的系数只能趋于0但无法等于0，换句话说，就是无法做特征选择。能否使用压缩估计的思想做到像特征最优子集选择那样提取出重要的特征呢？答案是肯定的！我们只需要对岭回归的优化函数做小小的调整就行了，我们使用系数向量的L1范数替换岭回归中的L2范数：                     </p>
+<script type="math/tex; mode=display">
+     J(w) = \sum\limits_{i=1}^{N}(y_i-w_0-\sum\limits_{j=1}^{p}w_jx_{ij})^2 + \lambda\sum\limits_{j=1}^{p}|w_j|,\;\;其中，\lambda \ge 0</script></li>
+</ul>
+</li>
+<li>降维</li>
+</ul>
+<p>可以通过 将原始的特征空间投影到一个低维的空间，实现变量的数量变少的方法，来减小误差，通过降维,我们希望减少冗余信息所造成的误差,提高识别(或其他应用)的精度。又或者希望通过降维算法来寻找数据内部的本质结构特征。</p>
+<p>主要的降维方法：主成分分析(PCA)</p>
+
       
     </div>
 
