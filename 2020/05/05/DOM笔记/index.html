@@ -17,15 +17,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DOM：document DOM节点  子节点：oUl.childNodes，只算第一层 属性：  length nodeType &#x3D;&#x3D;3   -&gt;文本节点 &#x3D;&#x3D;1   -&gt;元素节点 children：只包括元素，不包括文本">
+  <meta name="description" content="DOM：documentDOM节点 子节点：oUl.childNodes，只算第一层属性： length nodeType&#x3D;&#x3D;3   -&gt;文本节点&#x3D;&#x3D;1   -&gt;元素节点 children：只包括元素，不包括文本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM笔记">
 <meta property="og:url" content="http://fentuoli.github.io/2020/05/05/DOM%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="BoRe">
-<meta property="og:description" content="DOM：document DOM节点  子节点：oUl.childNodes，只算第一层 属性：  length nodeType &#x3D;&#x3D;3   -&gt;文本节点 &#x3D;&#x3D;1   -&gt;元素节点 children：只包括元素，不包括文本">
+<meta property="og:description" content="DOM：documentDOM节点 子节点：oUl.childNodes，只算第一层属性： length nodeType&#x3D;&#x3D;3   -&gt;文本节点&#x3D;&#x3D;1   -&gt;元素节点 children：只包括元素，不包括文本">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/DOM%E7%AC%94%E8%AE%B0/classname.PNG">
 <meta property="article:published_time" content="2020-05-05T05:43:36.000Z">
@@ -233,16 +233,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="DOM：document">DOM：document</h3>
-<h4 id="DOM节点">DOM节点</h4>
-<ul>
-<li>子节点：oUl.childNodes，只算第一层<br>
-属性：
-<ul>
+        <h3 id="DOM：document"><a href="#DOM：document" class="headerlink" title="DOM：document"></a>DOM：document</h3><h4 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h4><ul>
+<li>子节点：oUl.childNodes，只算第一层<br>属性：<ul>
 <li>length</li>
-<li>nodeType<br>
-==3   -&gt;文本节点<br>
-==1   -&gt;元素节点</li>
+<li>nodeType<br>==3   -&gt;文本节点<br>==1   -&gt;元素节点</li>
 <li>children：只包括元素，不包括文本</li>
 </ul>
 </li>
@@ -252,34 +246,22 @@
 <li>父节点：oUl.parentNode</li>
 <li>用来定位的父节点：offsetParent</li>
 <li>首尾子节点：firstChild/firstElementChild/lastChild/lastElementChild</li>
-<li>兄弟节点：nextSibling/nextElementSilbing/previousSibling/previousElementSibling</li>
+<li>兄弟节点：nextSibling/nextElementSilbing/previousSibling/previousElementSibling  </li>
 </ul>
-<h4 id="设置属性">设置属性</h4>
-<ul>
+<h4 id="设置属性"><a href="#设置属性" class="headerlink" title="设置属性"></a>设置属性</h4><ul>
 <li>getAttribute(名称)</li>
 <li>setAttribute(名称，值)</li>
-<li>removeAttribute(名称)</li>
+<li>removeAttribute(名称)  </li>
 </ul>
-<h4 id="用className选择元素">用className选择元素</h4>
-<p>!<img src="/2020/05/05/DOM%E7%AC%94%E8%AE%B0/classname.PNG" width="80%" height="80%"></p>
-<h4 id="创建、插入、删除元素">创建、插入、删除元素</h4>
-<ul>
-<li>创建：</li>
+<h4 id="用className选择元素"><a href="#用className选择元素" class="headerlink" title="用className选择元素"></a>用className选择元素</h4><p>!<img src="/2020/05/05/DOM%E7%AC%94%E8%AE%B0/classname.PNG" width="80%" height="80%">  </p>
+<h4 id="创建、插入、删除元素"><a href="#创建、插入、删除元素" class="headerlink" title="创建、插入、删除元素"></a>创建、插入、删除元素</h4><ul>
+<li>创建：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">oLi&#x3D;document.createElement(&quot;li&quot;);</span><br><span class="line">oUl.appendChild(oLi)&#x2F;&#x2F;父级.appendChild(oLi)</span><br></pre></td></tr></table></figure></li>
+<li>插入元素：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父级.insertBefore(名称，原有节点)</span><br></pre></td></tr></table></figure></li>
+<li>删除元素：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父级.removeChild(子节点)</span><br></pre></td></tr></table></figure>  
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">oLi&#x3D;document.createElement(&quot;li&quot;);</span><br><span class="line">oUl.appendChild(oLi)&#x2F;&#x2F;父级.appendChild(oLi)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>插入元素：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父级.insertBefore(名称，原有节点)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除元素：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父级.removeChild(子节点)</span><br></pre></td></tr></table></figure>  
-<h4 id="文档碎片">文档碎片</h4>
-<p>提高DOM操作性能<br>
-document.creatDocumentFragment();</p>
-<h4 id="表格应用">表格应用</h4>
-<ul>
+<h4 id="文档碎片"><a href="#文档碎片" class="headerlink" title="文档碎片"></a>文档碎片</h4><p>提高DOM操作性能<br>document.creatDocumentFragment();  </p>
+<h4 id="表格应用"><a href="#表格应用" class="headerlink" title="表格应用"></a>表格应用</h4><ul>
 <li>getElementsByTagName(‘tbody’)=tBodies</li>
 <li>getElementsByTagName(‘tr’)=rows</li>
 <li>getElementsByTagName(‘td’)=cells</li>
@@ -288,7 +270,7 @@ document.creatDocumentFragment();</p>
 <li>表格删除</li>
 <li>模糊大小写：toLowerCase()：将大写转为小写</li>
 <li>模糊搜索：search()方法，返回子串出现位置</li>
-<li>多关键词搜索：str.split(’ ')，将字符串切分成数组，每个分别查找一次</li>
+<li>多关键词搜索：str.split(‘ ‘)，将字符串切分成数组，每个分别查找一次</li>
 </ul>
 
     </div>
@@ -434,7 +416,7 @@ document.creatDocumentFragment();</p>
   </span>
   <span class="author" itemprop="copyrightHolder">BoRe</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
