@@ -230,12 +230,11 @@
 <li><strong>LL(1)分析表：</strong> 弹出非终结符后应该压入哪条产生式的右部</li>
 <li><strong>FIRST</strong>集计算规则：1. N-&gt;a 并入</li>
 </ul>
-<ol start="2">
+<ol>
 <li>N-&gt;M1M2M3… M1的FIRST并入N的FIRST</li>
 <li>直至第一个推不出空的非终结符的FIRST并入N的FIRST</li>
 </ol>
 <a id="more"></a>
-
 <ul>
 <li>构造LL(1)分析表，将FIRST推广到任意串上</li>
 <li>每个表项只有一个，称为LL(1)文法</li>
@@ -251,26 +250,20 @@
 <li>计算FIRST_S:若产生式右部均为NULLABLE，则将左部非终结符的FOLLOW也加进去</li>
 <li>LL(1)冲突解决：1. 消除左递归</li>
 </ul>
-<ol start="2">
+<ol>
 <li>提取左公因子<h5 id="LR-0-分析算法：自底向上"><a href="#LR-0-分析算法：自底向上" class="headerlink" title="LR(0)分析算法：自底向上"></a>LR(0)分析算法：自底向上</h5></li>
 </ol>
 <ul>
-<li><p>判断能否进行规约</p>
-</li>
-<li><p>最右推导的逆过程</p>
-</li>
-<li><p>将栈上的右部弹掉，压入左部</p>
-</li>
-<li><p>从左向右读入程序，最右推导，不用前看符号</p>
-</li>
+<li>判断能否进行规约</li>
+<li>最右推导的逆过程</li>
+<li>将栈上的右部弹掉，压入左部</li>
+<li>从左向右读入程序，最右推导，不用前看符号</li>
 <li><p><strong>缺点：</strong> 延迟错误发现时机，可能包含<strong>移进-规约</strong>冲突</p>
 </li>
 <li><p><strong>LR(0)分析表：</strong></p>
 </li>
-<li><p>Sn后的n指项目序号，Rn后的n值第几条文法符号</p>
-</li>
-<li><p>ACTION和GOTO表</p>
-</li>
+<li>Sn后的n指项目序号，Rn后的n值第几条文法符号</li>
+<li>ACTION和GOTO表</li>
 </ul>
 <h5 id="SLR分析算法："><a href="#SLR分析算法：" class="headerlink" title="SLR分析算法："></a>SLR分析算法：</h5><ul>
 <li>与LR(0)区别：对于状态i上的项目X-&gt;α●，仅对y∈FOLLOW(X)添加ACTION[i,y]</li>
@@ -285,10 +278,8 @@
 <li>二义性文法的处理方法：</li>
 </ul>
 <ol>
-<li><p>优先级</p>
-</li>
-<li><p>结合性</p>
-</li>
+<li>优先级</li>
+<li>结合性</li>
 <li><p>悬空else</p>
 <p>LALR分析算法：</p>
 </li>
@@ -299,7 +290,7 @@
 </ul>
 <p><strong>补充：</strong> </p>
 <ul>
-<li>SLR(1)判断规则：<br>方法一：画出文法的LR(0)自动机，如果没有移进–规约冲突，即shift–reduce 冲突，则该文法是SLR(1)文法   </li>
+<li>SLR(1)判断规则：<br>方法一：画出文法的LR(0)自动机，如果没有移进—规约冲突，即shift—reduce 冲突，则该文法是SLR(1)文法   </li>
 <li>LALR(1)和LR(1)的判断规则：<br>画出文法的LR(1)自动机，如果没有同心项且没有状态冲突，则该文法是LALR(1)文法；如果有同心项且合并同心项有状态冲突，则是LR（1）文法</li>
 <li>证明是LL(1)文法：</li>
 </ul>

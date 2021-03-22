@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求：​       Data Lab主要是关于位操作的实验，对应于书本的第2章：信息的表示和">
+  <meta name="description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; ，在此感谢！ 一、实验内容及要求：​       Data Lab主要是关于位操作的实验，对应于书本的第2章：信息的表示和处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datalab">
 <meta property="og:url" content="http://fentuoli.github.io/2020/05/05/datalab/index.html">
 <meta property="og:site_name" content="BoRe">
-<meta property="og:description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; *，在此感谢！ 一、实验内容及要求：​       Data Lab主要是关于位操作的实验，对应于书本的第2章：信息的表示和">
+<meta property="og:description" content="说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了码龙的窝： https:&#x2F;&#x2F;blog.codedragon.tech&#x2F;about&#x2F; ，在此感谢！ 一、实验内容及要求：​       Data Lab主要是关于位操作的实验，对应于书本的第2章：信息的表示和处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/datalab/16.PNG">
 <meta property="article:published_time" content="2020-05-05T07:07:08.000Z">
@@ -226,11 +226,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了*<em>码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> *</em>，在此感谢！</p>
+        <p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了<strong>码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> </strong>，在此感谢！</p>
 <h2 id="一、实验内容及要求："><a href="#一、实验内容及要求：" class="headerlink" title="一、实验内容及要求："></a>一、实验内容及要求：</h2><p>​       Data Lab主要是关于位操作的实验，对应于书本的第2章：信息的表示和处理。在该实验中，学生主要需要在一个严格限制的C子集（使用优先的位运算符以及顺序结构的代码）中实现简单的逻辑，补码以及浮点数相关的函数。本实验的目的是为了让学生熟悉整数和浮点数的位级表示。</p>
 <p>​        本实验的核心在于在各种受限制的条件下完成给出的15个谜题。其中包括5个位操作的谜题，7个补码运算的谜题，以及3个浮点数操作的谜题。其中每完成一个谜题都能得到一定的分数，如果使用的运算符数目小于给定的数目，还能获得加分。</p>
 <a id="more"></a>
-
 <h2 id="二、代码实现的解释与说明："><a href="#二、代码实现的解释与说明：" class="headerlink" title="二、代码实现的解释与说明："></a>二、代码实现的解释与说明：</h2><ul>
 <li><p>注意事项：</p>
 <ul>
@@ -267,7 +266,6 @@
 </li>
 <li><p>bang<br>问题：要求使用~ &amp; ^ | + &lt;&lt; &gt;&gt;以及不超过12个操作数计算x的逻辑非。<br>分析：逻辑非要求将0变成1，将非0的数变成0。生成0或1可以通过与掩码0x1求按位与实现，重点在于如何构造一个表达式使得0和非0的数产生不同的结果。<br>可以考虑对于任意一个非0的数，它的负数都是从最高位到其最低位的1为止(不包括最低位的1)全部取反的结果。<br>例如，14是00001110(8位)，而-14是11110010(8位)，为14从最高位到最低位的1(不包括这个1)，也就是000011取反，而最低位的10不变的结果。<br>而0的负数永远是0。<br>从这里我们可以看出，对于一个非0的数，它与它的负数按位或的结果的最高位一定会是1，而0与非0的按位或的结果的最高位永远是0。我们可以以此实现逻辑非。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bang</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line"><span class="comment">/* for x != 0, the highest bit of x | (-x) will always become 1 while when x == 0, the result is the opposite */</span></span><br><span class="line">	<span class="keyword">return</span> (~((x | (~x + <span class="number">1</span>)) &gt;&gt; <span class="number">31</span>) &amp; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h3 id="2-补码运算"><a href="#2-补码运算" class="headerlink" title="2.补码运算"></a>2.补码运算</h3><ul>
@@ -291,7 +289,6 @@
 </li>
 <li><p>ilog2<br>问题：要求使用! ~ &amp; ^ | + &lt;&lt; &gt;&gt;以及不超过90个操作数求出x以2为底的对数（向下舍入），保证x&gt;0。<br>分析：<br>这道题核心的思想是二分查找。首先将x右移16位，如果x&gt;0，则表明结果的第5位为1，将该位置为1。然后根据结果将x右移8位（第5位为0）或者将x右移24位（第5位为1），如果x&gt;0，则表明结果的第4位为1，将该位置为1。以此类推，直到得出结果。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ilog2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="comment">/* Binary Search */</span></span><br><span class="line">	<span class="keyword">int</span> result = (!!(x &gt;&gt; <span class="number">16</span>) &lt;&lt; <span class="number">4</span>);</span><br><span class="line">	result = result + ((!!(x &gt;&gt; (result + <span class="number">8</span>))) &lt;&lt; <span class="number">3</span>);</span><br><span class="line">	result = result + ((!!(x &gt;&gt; (result + <span class="number">4</span>))) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">	result = result + ((!!(x &gt;&gt; (result + <span class="number">2</span>))) &lt;&lt; <span class="number">1</span>);</span><br><span class="line">	result = result + (!!(x &gt;&gt; (result + <span class="number">1</span>)));</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h3 id="3-浮点数操作"><a href="#3-浮点数操作" class="headerlink" title="3.浮点数操作"></a>3.浮点数操作</h3><ul>
