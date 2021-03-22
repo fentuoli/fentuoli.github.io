@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码 EXPT 实验要求 ​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的最大">
+  <meta name="description" content="用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码 EXPT   实验要求 ​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVL树">
 <meta property="og:url" content="http://fentuoli.github.io/2020/05/05/AVL%E6%A0%91/index.html">
 <meta property="og:site_name" content="BoRe">
-<meta property="og:description" content="用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码 EXPT 实验要求 ​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的最大">
+<meta property="og:description" content="用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码 EXPT   实验要求 ​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/AVL%E6%A0%91/1.png">
 <meta property="og:image" content="http://fentuoli.github.io/2020/05/05/AVL%E6%A0%91/2.png">
@@ -237,53 +237,63 @@
 
       
         <p>用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码</p>
-<h2 id="EXPT"><a href="#EXPT" class="headerlink" title="EXPT"></a>EXPT</h2><ul>
-<li><p>实验要求</p>
+<h2 id="EXPT">EXPT</h2>
+<ul>
+<li>
+<p>实验要求</p>
 <p>​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的最大键值。</p>
 </li>
 </ul>
 <a id="more"></a>
 <ul>
-<li><p>实现算法：由于要在最短时间内对数据进行反复搜索与删除操作，通过建立二叉搜索树可以使得每次搜索与删除操作的时间为Ο(h)，但建立普通的二叉树有可能操作时间仍为Ο(n)，但创建红黑树维护又不方便，故建立平衡搜索树(AVL树)来实现功能。</p>
+<li>
+<p>实现算法：由于要在最短时间内对数据进行反复搜索与删除操作，通过建立二叉搜索树可以使得每次搜索与删除操作的时间为Ο(h)，但建立普通的二叉树有可能操作时间仍为Ο(n)，但创建红黑树维护又不方便，故建立平衡搜索树(AVL树)来实现功能。</p>
 <ul>
-<li><p>AVL树： AVL树是一种高度平衡的平衡二叉树，树中的任意节点的左右子树的高度之差不超过1。如果将二叉树上结点的平衡因子BF，定义为该结点的左子树与右子树的高度之差，根据AVL树的定义，AVL树中的任意结点的平衡因子只可能是-1（右子树高于左子树）、0或者1（左子树高于右子树），不平衡时需要进行左旋或右旋来维护AVL的平衡性。</p>
+<li>
+<p>AVL树： AVL树是一种高度平衡的平衡二叉树，树中的任意节点的左右子树的高度之差不超过1。如果将二叉树上结点的平衡因子BF，定义为该结点的左子树与右子树的高度之差，根据AVL树的定义，AVL树中的任意结点的平衡因子只可能是-1（右子树高于左子树）、0或者1（左子树高于右子树），不平衡时需要进行左旋或右旋来维护AVL的平衡性。</p>
 </li>
-<li><p>AVL树的结构定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">height</span>;<span class="comment">//用于表示当前结点的高度，叶结点的高度为1</span></span><br><span class="line">    BST left;</span><br><span class="line">    BST right;</span><br><span class="line">    BST parent;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<li>
+<p>AVL树的结构定义：</p>
 </li>
 </ul>
-</li>
-</ul>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">height</span>;<span class="comment">//用于表示当前结点的高度，叶结点的高度为1</span></span><br><span class="line">    BST left;</span><br><span class="line">    BST right;</span><br><span class="line">    BST parent;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>AVL树的旋转操作：</p>
+<li>
+<p>AVL树的旋转操作：</p>
 <p><strong>情况1</strong></p>
 <p><img src="/2020/05/05/AVL%E6%A0%91/1.png" alt="1"></p>
 <p>​      右旋就是使a、b进行右旋1/4圆，使得b节点作为父节点，a节点变为b节点的右节点，b的左子树在经过右旋操作后仍是b的左子树。如果b有右子树。那么右旋后b的右子树将成为a的左子树。</p>
-<p>​        左旋是右旋对称的过程。当二叉树插入或者删除一个节点时，如果破坏了树的平衡性，就会根据树的失衡情况进行旋转操作，如果左子树高于右子树，则右旋，如果右子树高于左子树，则左旋。 </p>
+<p>​        左旋是右旋对称的过程。当二叉树插入或者删除一个节点时，如果破坏了树的平衡性，就会根据树的失衡情况进行旋转操作，如果左子树高于右子树，则右旋，如果右子树高于左子树，则左旋。</p>
 <p><strong>还有一种需要进行两次旋转的情况：</strong></p>
 <p><strong>情况2</strong></p>
 <p><img src="/2020/05/05/AVL%E6%A0%91/2.png" alt="2"></p>
 <p>​      如果节点插入到a的左子树的右节点，则需要先左旋再右旋来重新平衡树。同理，如果节点插入到a的右子树的左子节点，则需要先右旋再左旋来重新平衡树。如果直接进行右旋,生成的树将仍然是失衡的。</p>
-<p> <img src="/2020/05/05/AVL%E6%A0%91/3.png" alt="3"></p>
+<p><img src="/2020/05/05/AVL%E6%A0%91/3.png" alt="3"></p>
 </li>
-<li><p>寻找前驱：如果是新出现的值，由于每一个新插入的结点只有可能成为叶结点，故当该结点成为其父结点的左结点时，则按上图所示方式寻找B的前驱A，当该结点成为其父结点的右结点时，直接返回其父结点。如果能找到则直接返回该结点。</p>
+<li>
+<p>寻找前驱：如果是新出现的值，由于每一个新插入的结点只有可能成为叶结点，故当该结点成为其父结点的左结点时，则按上图所示方式寻找B的前驱A，当该结点成为其父结点的右结点时，直接返回其父结点。如果能找到则直接返回该结点。</p>
 </li>
 </ul>
-<ul>
-<li><p>关键代码讲解：</p>
-<ul>
-<li><p>插入结点：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BST <span class="title">avl_insertnode</span><span class="params">(BST root, <span class="keyword">int</span> data)</span><span class="comment">//与二叉树插入方式类似，只是插入后要对该路径上的结点的height值进行更新，并维护其平衡性</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BST current = root;</span><br><span class="line">    <span class="keyword">if</span>(current) &#123;</span><br><span class="line">        <span class="keyword">while</span> (current-&gt;key != data) &#123;</span><br><span class="line">            <span class="keyword">if</span> (data &lt; current-&gt;key) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current-&gt;left) current = current-&gt;left;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    current-&gt;left = avl_create_node(data, current);</span><br><span class="line">                    current = current-&gt;left;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data &gt; current-&gt;key) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current-&gt;right) current = current-&gt;right;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    current-&gt;right = avl_create_node(data, current);</span><br><span class="line">                    current = current-&gt;right;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            current = current-&gt;parent;</span><br><span class="line">            avl_update_height(current);</span><br><span class="line">            current = avl_balance(current);</span><br><span class="line">        &#125; <span class="keyword">while</span> (current-&gt;parent);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        current = avl_create_node(data,<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
-<li><p>维护平衡性：</p>
+<li>
+<p>关键代码讲解：</p>
+<ul>
+<li>插入结点：</li>
+</ul>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BST <span class="title">avl_insertnode</span><span class="params">(BST root, <span class="keyword">int</span> data)</span><span class="comment">//与二叉树插入方式类似，只是插入后要对该路径上的结点的height值进行更新，并维护其平衡性</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BST current = root;</span><br><span class="line">    <span class="keyword">if</span>(current) &#123;</span><br><span class="line">        <span class="keyword">while</span> (current-&gt;key != data) &#123;</span><br><span class="line">            <span class="keyword">if</span> (data &lt; current-&gt;key) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current-&gt;left) current = current-&gt;left;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    current-&gt;left = avl_create_node(data, current);</span><br><span class="line">                    current = current-&gt;left;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data &gt; current-&gt;key) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current-&gt;right) current = current-&gt;right;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    current-&gt;right = avl_create_node(data, current);</span><br><span class="line">                    current = current-&gt;right;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            current = current-&gt;parent;</span><br><span class="line">            avl_update_height(current);</span><br><span class="line">            current = avl_balance(current);</span><br><span class="line">        &#125; <span class="keyword">while</span> (current-&gt;parent);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        current = avl_create_node(data,<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>维护平衡性：</p>
  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BST <span class="title">avl_balance</span><span class="params">(BST root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">height</span>(root-&gt;left) - <span class="built_in">height</span>(root-&gt;right) &gt; <span class="number">1</span>) &#123;<span class="comment">//如果左子树深度大</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">height</span>(root-&gt;left-&gt;left) &gt; <span class="built_in">height</span>(root-&gt;left-&gt;right)) &#123;<span class="comment">//对应上图情况1</span></span><br><span class="line">            root = avl_rotate_right(root);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;<span class="comment">//对应上图情况2</span></span><br><span class="line">            avl_rotate_left(root-&gt;left);</span><br><span class="line">            root = avl_rotate_right(root);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">height</span>(root-&gt;right) - <span class="built_in">height</span>(root-&gt;left) &gt; <span class="number">1</span>) &#123;<span class="comment">//如果右子树深度大，与左子树对称</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">height</span>(root-&gt;right-&gt;right) &gt; <span class="built_in">height</span>(root-&gt;right-&gt;left)) &#123;</span><br><span class="line">            root = avl_rotate_left(root);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            avl_rotate_right(root-&gt;right);</span><br><span class="line">            root = avl_rotate_left(root);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
-<li><p>左旋与右旋：</p>
+<li>
+<p>左旋与右旋：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BST <span class="title">avl_rotate_left</span><span class="params">(BST root)</span><span class="comment">//旋转方法参考上图情况1与情况2</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BST right_root = root-&gt;right;</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;parent) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;parent-&gt;right == root) root-&gt;parent-&gt;right = right_root;</span><br><span class="line">        <span class="keyword">else</span> root-&gt;parent-&gt;left = right_root;</span><br><span class="line">    &#125;</span><br><span class="line">    right_root-&gt;parent = root-&gt;parent;</span><br><span class="line">    root-&gt;right = right_root-&gt;left;</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;right) root-&gt;right-&gt;parent = root;</span><br><span class="line">    right_root-&gt;left = root;</span><br><span class="line">    root-&gt;parent = right_root;</span><br><span class="line"></span><br><span class="line">    avl_update_height(root);</span><br><span class="line">    avl_update_height(right_root);</span><br><span class="line">    <span class="keyword">return</span> right_root;</span><br><span class="line">&#125;<span class="comment">//右旋情况对称</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>算法复杂度分析：旋转、插入、删除、寻找前驱操作均可以在Ο(lgn)的时间复杂度内完成。</p>
+<li>
+<p>算法复杂度分析：旋转、插入、删除、寻找前驱操作均可以在Ο(lgn)的时间复杂度内完成。</p>
 </li>
 </ul>
 

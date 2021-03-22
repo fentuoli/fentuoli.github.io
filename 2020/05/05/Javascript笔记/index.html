@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"fentuoli.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本篇文章是我自学网易云课堂：智能社:JavaScript-从入门到精通后写的学习笔记，有需要的朋友可自行搜索！PS：本课程是我找到的所有讲解javascript最明白易懂的课程 Javascript功能交互、修改样式tip：className的使用（控制class)；JS允许连等   组成 ECMAScript(解释器)：翻译 DOM：document object model，操作HTML的能力">
+  <meta name="description" content="本篇文章是我自学网易云课堂：智能社:JavaScript-从入门到精通后写的学习笔记，有需要的朋友可自行搜索！PS：本课程是我找到的所有讲解javascript最明白易懂的课程 Javascript 功能 交互、修改样式 tip：className的使用（控制class)；JS允许连等 组成  ECMAScript(解释器)：翻译 DOM：document object model，操作HTML的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript笔记">
 <meta property="og:url" content="http://fentuoli.github.io/2020/05/05/Javascript%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="BoRe">
-<meta property="og:description" content="本篇文章是我自学网易云课堂：智能社:JavaScript-从入门到精通后写的学习笔记，有需要的朋友可自行搜索！PS：本课程是我找到的所有讲解javascript最明白易懂的课程 Javascript功能交互、修改样式tip：className的使用（控制class)；JS允许连等   组成 ECMAScript(解释器)：翻译 DOM：document object model，操作HTML的能力">
+<meta property="og:description" content="本篇文章是我自学网易云课堂：智能社:JavaScript-从入门到精通后写的学习笔记，有需要的朋友可自行搜索！PS：本课程是我找到的所有讲解javascript最明白易懂的课程 Javascript 功能 交互、修改样式 tip：className的使用（控制class)；JS允许连等 组成  ECMAScript(解释器)：翻译 DOM：document object model，操作HTML的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-05T05:36:13.000Z">
 <meta property="article:modified_time" content="2021-03-15T08:43:43.017Z">
@@ -232,18 +232,24 @@
 
       
         <p>本篇文章是我自学<strong>网易云课堂：智能社:JavaScript-从入门到精通</strong>后写的学习笔记，有需要的朋友可自行搜索！PS：本课程是我找到的所有讲解javascript最明白易懂的课程</p>
-<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>交互、修改样式<br>tip：className的使用（控制class)；JS允许连等  </p>
-<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
+<h3 id="Javascript">Javascript</h3>
+<h4 id="功能">功能</h4>
+<p>交互、修改样式<br>
+tip：className的使用（控制class)；JS允许连等</p>
+<h4 id="组成">组成</h4>
+<ul>
 <li>ECMAScript(解释器)：翻译</li>
 <li>DOM：document object model，操作HTML的能力</li>
-<li>BOM：browser object model  </li>
+<li>BOM：browser object model</li>
 </ul>
 <a id="more"></a>
-<h4 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h4><ul>
+<h4 id="变量类型">变量类型</h4>
+<ul>
 <li>number string boolean undefined object function</li>
-<li>一个变量应该只存放一种类型的数据  </li>
+<li>一个变量应该只存放一种类型的数据</li>
 </ul>
-<h4 id="变量转换"><a href="#变量转换" class="headerlink" title="变量转换"></a>变量转换</h4><p>显示类型转换：</p>
+<h4 id="变量转换">变量转换</h4>
+<p>显示类型转换：</p>
 <ul>
 <li>parseInt：把字符串转成整数</li>
 <li>parseFloat：把字符串转成小数</li>
@@ -260,20 +266,24 @@
 <li>字符串连接</li>
 <li>数字相加</li>
 </ul>
-<p>“-”功能：数字相减  </p>
-<h4 id="变量作用域和闭包"><a href="#变量作用域和闭包" class="headerlink" title="变量作用域和闭包"></a>变量作用域和闭包</h4><ul>
+<p>“-”功能：数字相减</p>
+<h4 id="变量作用域和闭包">变量作用域和闭包</h4>
+<ul>
 <li>作用域：局部、全局变量</li>
-<li>闭包：子函数可以使用父函数的局部变量  </li>
+<li>闭包：子函数可以使用父函数的局部变量</li>
 </ul>
-<h4 id="程序流程控制"><a href="#程序流程控制" class="headerlink" title="程序流程控制"></a>程序流程控制</h4><ul>
+<h4 id="程序流程控制">程序流程控制</h4>
+<ul>
 <li>判断：if、switch、?:(三目运算符)，用法：条件?语句1:语句2，替换if-else</li>
 <li>循环：while、for</li>
 <li>跳出：break、continue</li>
 <li>真：true、非零数字、非空字符串、非空对象</li>
-<li>假：false、数字零、空字符串、空对象、undefined  </li>
+<li>假：false、数字零、空字符串、空对象、undefined</li>
 </ul>
-<h4 id="字典循环"><a href="#字典循环" class="headerlink" title="字典循环"></a>字典循环</h4><p>for(var i in json)  </p>
-<h4 id="数组基础"><a href="#数组基础" class="headerlink" title="数组基础"></a>数组基础</h4><ul>
+<h4 id="字典循环">字典循环</h4>
+<p>for(var i in json)</p>
+<h4 id="数组基础">数组基础</h4>
+<ul>
 <li>定义：var arr=[1,2,3]；arr=new Array(1,2,3)</li>
 <li>添加：arr.push(4)</li>
 <li>删除：arr.pop()</li>
@@ -282,44 +292,54 @@
 <li>删除：arr.splice(起点，长度)</li>
 <li>插入：arr.splice(起点，长度，元素…)</li>
 <li>连接：a.concat(b)</li>
-<li>把数组变为字符串：arr.join(‘-‘)（用’-‘连接数组中的元素）</li>
+<li>把数组变为字符串：arr.join(‘-’)（用’-'连接数组中的元素）</li>
 <li>字符串 排序：arr.sort()</li>
-<li>数字排序：arr.sort(function (n1,n2){return n1-n2;}  </li>
+<li>数字排序：arr.sort(function (n1,n2){return n1-n2;}</li>
 </ul>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ul>
-<li>函数传参：参数就是占位符<ul>
+<h4 id="函数">函数</h4>
+<ul>
+<li>函数传参：参数就是占位符
+<ul>
 <li>函数参数可变：arguments(arguments.length)</li>
 </ul>
 </li>
-<li>操作属性的方法：a.value/a[‘value’]  </li>
+<li>操作属性的方法：a.value/a[‘value’]</li>
 </ul>
-<h4 id="提取行间事件"><a href="#提取行间事件" class="headerlink" title="提取行间事件"></a>提取行间事件</h4><ul>
+<h4 id="提取行间事件">提取行间事件</h4>
+<ul>
 <li>function 名字() {}</li>
 <li>button.onclick=function()</li>
 <li>将script代码写在head中时有可能出错，用window.onload=function( ){};来实现（先加载后执行该段代码）</li>
 <li>元素.style.属性=xxx是修改行间样式，之后再修改className不会有效果</li>
-<li>提取非行间样式：oDiv.currentStyle.属性、getComputedSytle(oDiv,false).属性  </li>
+<li>提取非行间样式：oDiv.currentStyle.属性、getComputedSytle(oDiv,false).属性</li>
 </ul>
-<h4 id="获取一组元素"><a href="#获取一组元素" class="headerlink" title="获取一组元素"></a>获取一组元素</h4><p>getElementsByTagName获取的是数组  </p>
-<h4 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h4><ul>
+<h4 id="获取一组元素">获取一组元素</h4>
+<p>getElementsByTagName获取的是数组</p>
+<h4 id="选项卡">选项卡</h4>
+<ul>
 <li>this：当前发生事件的元素</li>
-<li>可以通过js给标签添加新的属性  </li>
+<li>可以通过js给标签添加新的属性</li>
 </ul>
-<h4 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h4><ul>
-<li>标签中显示的文字，可以按html的格式来写  </li>
+<h4 id="innerHTML">innerHTML</h4>
+<ul>
+<li>标签中显示的文字，可以按html的格式来写</li>
 </ul>
-<h4 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h4><ul>
-<li>开启定时器<ul>
+<h4 id="定时器">定时器</h4>
+<ul>
+<li>开启定时器
+<ul>
 <li>间隔型：setInterval(事件，时间)</li>
 <li>延时性：setTimeout(事件，时间)</li>
 </ul>
 </li>
-<li>关闭定时器<ul>
+<li>关闭定时器
+<ul>
 <li>clearInterval()</li>
 <li>clearTimeout()</li>
 </ul>
 </li>
-<li>Date对象：var oDate=new Date();<ul>
+<li>Date对象：var oDate=new Date();
+<ul>
 <li>oDate.getHours()</li>
 <li>oDate.getMinutes()</li>
 <li>oDate.getSeconds()</li>
@@ -329,16 +349,18 @@
 <li>oDate.getDay()（返回星期，0为周日…）</li>
 </ul>
 </li>
-<li>由于兼容性，为获取字符串的某一位，要将str[0]改为str.charAt(0)  </li>
+<li>由于兼容性，为获取字符串的某一位，要将str[0]改为str.charAt(0)</li>
 </ul>
-<h4 id="延时提示框"><a href="#延时提示框" class="headerlink" title="延时提示框"></a>延时提示框</h4><ul>
+<h4 id="延时提示框">延时提示框</h4>
+<ul>
 <li>鼠标移入：onmouseover</li>
 <li>鼠标移出：onmouseout</li>
 <li>用setTimeout控制延时消失</li>
 <li>当鼠标移入提示框时，关闭定时器</li>
-<li>当鼠标移出提示框时，提示框消失  </li>
+<li>当鼠标移出提示框时，提示框消失</li>
 </ul>
-<h4 id="无缝滚动"><a href="#无缝滚动" class="headerlink" title="无缝滚动"></a>无缝滚动</h4><ul>
+<h4 id="无缝滚动">无缝滚动</h4>
+<ul>
 <li>offsetLeft/offsetTop获取物体边距</li>
 <li>offsetHeight/offsetWidth</li>
 <li>改变滚动方向</li>

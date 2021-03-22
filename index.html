@@ -217,10 +217,14 @@
 
       
           <ul>
-<li>创建这个博客是为了鼓励自己能阶段性地总结学过的东西，改掉学过就忘的毛病。我把自己踩过的坑，以及解决方案写上来，也希望对其他人有所帮助。</li>
-<li><p>博客上面是我的一些代码的实现思路，完整代码可参见我的github，欢迎大家访问并follow！</p>
+<li>
+<p>创建这个博客是为了鼓励自己能阶段性地总结学过的东西，改掉学过就忘的毛病。我把自己踩过的坑，以及解决方案写上来，也希望对其他人有所帮助。</p>
 </li>
-<li><p>愿与君共勉！</p>
+<li>
+<p>博客上面是我的一些代码的实现思路，完整代码可参见我的github，欢迎大家访问并follow！</p>
+</li>
+<li>
+<p>愿与君共勉！</p>
 </li>
 </ul>
 <center><img src="/2020/04/30/%E5%89%8D%E8%A8%80/图片1.png" style="margin: auto;" width="60%" height="60%"></center>
@@ -295,13 +299,16 @@
 
       
           <p>这次学习的内容为<strong>偏差与方差理论</strong>，我将datawhale提供的学习资料与李宏毅老师课程的内容相结合进行学习笔记的记录。</p>
-<h4 id="Error的来源"><a href="#Error的来源" class="headerlink" title="Error的来源"></a>Error的来源</h4><ul>
+<h4 id="Error的来源">Error的来源</h4>
+<ul>
 <li>bias</li>
 <li>variance</li>
 </ul>
 <p>bias：偏差；variance：方差 -&gt; 实际上对应着物理实验中系统误差和随机误差的概念，假设有n组数据，每一组数据都会产生一个相应的$f^<em>$，此时bias表示所有$f^</em>$的平均落靶位置和真值靶心的距离，variance表示这些$f^*$的集中程度。</p>
 <p>由于我们只有有限组样本，样本均值的期望是总体均值，样本方差的期望是总体方差，我们用样本均值来估测总体均值，样本方差来估测总体方差。</p>
-<h4 id="如何选择一个Function"><a href="#如何选择一个Function" class="headerlink" title="如何选择一个Function"></a>如何选择一个Function</h4><h5 id="1-bias与vaiance的权衡"><a href="#1-bias与vaiance的权衡" class="headerlink" title="1.bias与vaiance的权衡"></a>1.bias与vaiance的权衡</h5><p>最好的function$f^*$：取决于model的复杂程度以及data的数量，即bias与vaiance的权衡</p>
+<h4 id="如何选择一个Function">如何选择一个Function</h4>
+<h5 id="1-bias与vaiance的权衡">1.bias与vaiance的权衡</h5>
+<p>最好的function$f^*$：取决于model的复杂程度以及data的数量，即bias与vaiance的权衡</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/22/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task3/#more" rel="contents">
@@ -387,11 +394,14 @@
 
       
           <p>这次学习的内容为<strong>使用sklearn构建完整的回归项目</strong>，我将datawhale提供的学习资料与李宏毅老师讲线性回归的内容相结合进行学习笔记的记录。</p>
-<h4 id="回归模型的基本分析"><a href="#回归模型的基本分析" class="headerlink" title="回归模型的基本分析"></a>回归模型的基本分析</h4><h5 id="Step1：定义Model-function-set"><a href="#Step1：定义Model-function-set" class="headerlink" title="Step1：定义Model(function set)"></a>Step1：定义Model(function set)</h5><p>Linear Model：$y=b+\sum{w_ix_i}$</p>
+<h4 id="回归模型的基本分析">回归模型的基本分析</h4>
+<h5 id="Step1：定义Model-function-set">Step1：定义Model(function set)</h5>
+<p>Linear Model：$y=b+\sum{w_ix_i}$</p>
 <p>$x_i$：X的特征；</p>
 <p>$w_i$：$x_i$的权重；</p>
 <p>$b$：偏差</p>
-<h5 id="Step2：寻找一个损失函数评估该function的好坏"><a href="#Step2：寻找一个损失函数评估该function的好坏" class="headerlink" title="Step2：寻找一个损失函数评估该function的好坏"></a>Step2：寻找一个损失函数评估该function的好坏</h5><p>$x^i$：用上标来表示一个完整的object的编号，$x^i$表示第i只宝可梦</p>
+<h5 id="Step2：寻找一个损失函数评估该function的好坏">Step2：寻找一个损失函数评估该function的好坏</h5>
+<p>$x^i$：用上标来表示一个完整的object的编号，$x^i$表示第i只宝可梦</p>
 <p>$\hat{y}^i$：用$\hat{y}$表示一个实际观察到的object输出，上标为i表示是第i个object</p>
           <!--noindex-->
             <div class="post-button">
@@ -558,8 +568,10 @@
 
       
           <p>用AVL树原理实现的可以对数据进行反复搜索与删除操作功能的代码</p>
-<h2 id="EXPT"><a href="#EXPT" class="headerlink" title="EXPT"></a>EXPT</h2><ul>
-<li><p>实验要求</p>
+<h2 id="EXPT">EXPT</h2>
+<ul>
+<li>
+<p>实验要求</p>
 <p>​       实现一个简单的数据库系统。该数据库系统需要处理用户的数据库插入和查询语句，并输出相应的输出。具体来说，用户的输入共包含若干条插入语句和查询语句。其中每条插入语句包含一个非负整数表示需要插入的数据。每条查询语句包含一个整数表示待查询的键值，若该键值存在则直接输出该键值，否则输出数据库中比该键值小的最大键值。</p>
 </li>
 </ul>
@@ -648,7 +660,7 @@
 
       
           <p>在做红黑树插入与删除操作时，有很多地方总是弄不明白，之后看了一篇博文，讲解非常清楚，特意记录在这里！</p>
-<p> <a href="https://blog.csdn.net/justdoithai/article/details/52670875" target="_blank" rel="noopener">https://blog.csdn.net/justdoithai/article/details/52670875</a> </p>
+<p><a href="https://blog.csdn.net/justdoithai/article/details/52670875" target="_blank" rel="noopener">https://blog.csdn.net/justdoithai/article/details/52670875</a></p>
 
       
     </div>
@@ -727,7 +739,8 @@
 
       
           <p>说明：本实验实现了利用huffman原理进行压缩和解压功能的代码</p>
-<h3 id="一、问题描述："><a href="#一、问题描述：" class="headerlink" title="一、问题描述："></a>一、问题描述：</h3><p><strong>构建哈夫曼树进行编码和解码：</strong></p>
+<h3 id="一、问题描述：">一、问题描述：</h3>
+<p><strong>构建哈夫曼树进行编码和解码：</strong></p>
 <p><strong>基础功能：</strong></p>
 <ol>
 <li>输入电文字符串</li>
@@ -822,7 +835,8 @@
 
       
           <p>说明：本实验实现的是基于离散事件驱动的银行业务的事件驱动模拟系统，其中有关键代码讲解</p>
-<h3 id="一、实验要求："><a href="#一、实验要求：" class="headerlink" title="一、实验要求："></a>一、实验要求：</h3><p>客户业务分为两种：</p>
+<h3 id="一、实验要求：">一、实验要求：</h3>
+<p>客户业务分为两种：</p>
 <p>第一种是申请从银行得到一笔资金，即取款或借款；</p>
 <p>第二种是向银行投入一笔资金，即存款或还款。</p>
           <!--noindex-->
@@ -909,17 +923,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>说明：本实验为课程计算机组成原理要求实验，具体解释与完整代码参加我的github地址： <a href="https://github.com/fentuoli/multicycle-CPU" target="_blank" rel="noopener">https://github.com/fentuoli/multicycle-CPU</a> </p>
-<h2 id="一、实验要求与内容"><a href="#一、实验要求与内容" class="headerlink" title="一、实验要求与内容"></a>一、实验要求与内容</h2><ol>
-<li><p>设计实现多周期MIPS-CPU，可执行如下指令：</p>
+          <p>说明：本实验为课程计算机组成原理要求实验，具体解释与完整代码参加我的github地址： <a href="https://github.com/fentuoli/multicycle-CPU" target="_blank" rel="noopener">https://github.com/fentuoli/multicycle-CPU</a></p>
+<h2 id="一、实验要求与内容">一、实验要求与内容</h2>
+<ol>
+<li>
+<p>设计实现多周期MIPS-CPU，可执行如下指令：</p>
 <ul>
-<li><p><strong>add, sub, and, or,</strong> <strong>xor</strong>, <strong>nor,</strong> <strong>slt</strong> </p>
+<li>
+<p><strong>add, sub, and, or,</strong> <strong>xor</strong>, <strong>nor,</strong> <strong>slt</strong></p>
 </li>
-<li><p><strong>addi</strong>,<strong>andi</strong>,<strong>ori</strong>,<strong>xori</strong>,<strong>slti</strong> </p>
+<li>
+<p><strong>addi</strong>,<strong>andi</strong>,<strong>ori</strong>,<strong>xori</strong>,<strong>slti</strong></p>
 </li>
-<li><p><strong>lw</strong>,<strong>sw</strong></p>
+<li>
+<p><strong>lw</strong>,<strong>sw</strong></p>
 </li>
-<li><p><strong>beq</strong>,<strong>bne</strong>,<strong>j</strong></p>
+<li>
+<p><strong>beq</strong>,<strong>bne</strong>,<strong>j</strong></p>
 </li>
 </ul>
 <p>其中寄存器堆中R0内容恒定为0，存储器容量为256*32位</p>
@@ -1009,8 +1029,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了<strong>码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> </strong>，在此感谢！</p>
-<h2 id="一、实验内容"><a href="#一、实验内容" class="headerlink" title="一、实验内容"></a>一、实验内容</h2><h3 id="1-实验内容及要求-使用显示空闲链表实现一个32位系统堆内存分配器"><a href="#1-实验内容及要求-使用显示空闲链表实现一个32位系统堆内存分配器" class="headerlink" title="1. 实验内容及要求:使用显示空闲链表实现一个32位系统堆内存分配器"></a>1. 实验内容及要求:使用显示空闲链表实现一个32位系统堆内存分配器</h3><h2 id="二、实验的操作步骤及运行截图"><a href="#二、实验的操作步骤及运行截图" class="headerlink" title="二、实验的操作步骤及运行截图"></a>二、实验的操作步骤及运行截图</h2><h3 id="1-实现隐式空闲链表"><a href="#1-实现隐式空闲链表" class="headerlink" title="1.实现隐式空闲链表"></a>1.实现隐式空闲链表</h3>
+          <p>说明：CSAPP实验是很有名的实验，我为了完成课堂任务总共写了四个实验：bomblab、cachelab、datalab和malloclab，在做的过程中也参考了许多人的博客，其中主要参考了**码龙的窝： <a href="https://blog.codedragon.tech/about/" target="_blank" rel="noopener">https://blog.codedragon.tech/about/</a> **，在此感谢！</p>
+<h2 id="一、实验内容">一、实验内容</h2>
+<h3 id="1-实验内容及要求-使用显示空闲链表实现一个32位系统堆内存分配器">1. 实验内容及要求:使用显示空闲链表实现一个32位系统堆内存分配器</h3>
+<h2 id="二、实验的操作步骤及运行截图">二、实验的操作步骤及运行截图</h2>
+<h3 id="1-实现隐式空闲链表">1.实现隐式空闲链表</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/05/05/malloclab/#more" rel="contents">
