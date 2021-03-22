@@ -28,7 +28,7 @@
 <meta property="og:description" content="这次学习的内容为偏差与方差理论，我将datawhale提供的学习资料与李宏毅老师课程的内容相结合进行学习笔记的记录。 Error的来源 bias variance  bias：偏差；variance：方差 -&gt; 实际上对应着物理实验中系统误差和随机误差的概念，假设有n组数据，每一组数据都会产生一个相应的$f^*$，此时bias表示所有$f^*$的平均落靶位置和真值靶心的距离，variance">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-22T08:59:38.000Z">
-<meta property="article:modified_time" content="2021-03-22T12:35:52.104Z">
+<meta property="article:modified_time" content="2021-03-22T12:37:40.085Z">
 <meta property="article:author" content="般若">
 <meta property="article:tag" content="Datawhale">
 <meta property="article:tag" content="集成学习">
@@ -191,7 +191,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：20:35:52" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
+              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：20:37:40" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,10 +237,10 @@
 <p>可以证明：           </p>
 <script type="math/tex; mode=display">
 E\left(y_{0}-\hat{f}\left(x_{0}\right)\right)^{2}=\operatorname{Var}\left(\hat{f}\left(x_{0}\right)\right)+\left[\operatorname{Bias}\left(\hat{f}\left(x_{0}\right)\right)\right]^{2}+\operatorname{Var}(\varepsilon)</script><ul>
-<li><p><script type="math/tex">f^\*</script>的variance取决于model的复杂程度和data的数量</p>
-<p><script type="math/tex">f^\*</script>的variance是由model决定的，一个简单的model在不同的training data下可以获得比较稳定分布的<script type="math/tex">f^\*</script>，而复杂的model在不同的training data下的分布比较杂乱(如果data足够多，那复杂的model也可以得到比较稳定的分布)</p>
-<p>如果采用比较简单的model，那么每次在不同data下的实验所得到的不同的<script type="math/tex">f^\*</script>之间的variance是比较小的，就好像说，你在射击的时候，每次击中的位置是差不多的</p>
-<p>但是如果model比较复杂，那么每次在不同data下的实验所得到的不同的<script type="math/tex">f^\*</script>之间的variance是比较大的，它的散布就会比较开</p>
+<li><p>$f^*$的variance取决于model的复杂程度和data的数量</p>
+<p>$f^*$的variance是由model决定的，一个简单的model在不同的training data下可以获得比较稳定分布的$f^*$，而复杂的model在不同的training data下的分布比较杂乱(如果data足够多，那复杂的model也可以得到比较稳定的分布)</p>
+<p>如果采用比较简单的model，那么每次在不同data下的实验所得到的不同的$f^*$之间的variance是比较小的，就好像说，你在射击的时候，每次击中的位置是差不多的</p>
+<p>但是如果model比较复杂，那么每次在不同data下的实验所得到的不同的$f^*$之间的variance是比较大的，它的散布就会比较开</p>
 <blockquote>
 <p>那为什么比较复杂的model，它的散布就比较开呢？比较简单的model，它的散布就比较密集呢？</p>
 </blockquote>
