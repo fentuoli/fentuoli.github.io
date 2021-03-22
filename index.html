@@ -267,7 +267,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：20:13:23" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
+              <time title="创建时间：2021-03-22 16:59:38 / 修改时间：20:26:23" itemprop="dateCreated datePublished" datetime="2021-03-22T16:59:38+08:00">2021-03-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,13 +295,13 @@
 
       
           <p>这次学习的内容为<strong>偏差与方差理论</strong>，我将datawhale提供的学习资料与李宏毅老师课程的内容相结合进行学习笔记的记录。</p>
-<h4 id="Error的来源"><a href="#Error的来源" class="headerlink" title="Error的来源"></a>Error的来源</h4><ul>
+<h3 id="Error的来源"><a href="#Error的来源" class="headerlink" title="Error的来源"></a>Error的来源</h3><ul>
 <li>bias</li>
 <li>variance</li>
 </ul>
 <p>bias：偏差；variance：方差 -&gt; 实际上对应着物理实验中系统误差和随机误差的概念，假设有n组数据，每一组数据都会产生一个相应的$f^<em>$，此时bias表示所有$f^</em>$的平均落靶位置和真值靶心的距离，variance表示这些$f^*$的集中程度。</p>
 <p>由于我们只有有限组样本，样本均值的期望是总体均值，样本方差的期望是总体方差，我们用样本均值来估测总体均值，样本方差来估测总体方差。</p>
-<h4 id="如何选择一个Function"><a href="#如何选择一个Function" class="headerlink" title="如何选择一个Function"></a>如何选择一个Function</h4><h5 id="1-bias与vaiance的权衡"><a href="#1-bias与vaiance的权衡" class="headerlink" title="1.bias与vaiance的权衡"></a>1.bias与vaiance的权衡</h5><p>最好的function$f^*$：取决于model的复杂程度以及data的数量，即bias与vaiance的权衡</p>
+<h3 id="如何选择一个Function"><a href="#如何选择一个Function" class="headerlink" title="如何选择一个Function"></a>如何选择一个Function</h3><h4 id="1-bias与vaiance的权衡"><a href="#1-bias与vaiance的权衡" class="headerlink" title="1.bias与vaiance的权衡"></a>1.bias与vaiance的权衡</h4><p>最好的function$f^*$：取决于model的复杂程度以及data的数量，即bias与vaiance的权衡</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/22/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E4%B8%8A-task3/#more" rel="contents">
@@ -359,7 +359,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-22 16:52:51" itemprop="dateModified" datetime="2021-03-22T16:52:51+08:00">2021-03-22</time>
+                <time title="修改时间：2021-03-22 20:27:13" itemprop="dateModified" datetime="2021-03-22T20:27:13+08:00">2021-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,11 +387,11 @@
 
       
           <p>这次学习的内容为<strong>使用sklearn构建完整的回归项目</strong>，我将datawhale提供的学习资料与李宏毅老师讲线性回归的内容相结合进行学习笔记的记录。</p>
-<h4 id="回归模型的基本分析"><a href="#回归模型的基本分析" class="headerlink" title="回归模型的基本分析"></a>回归模型的基本分析</h4><h5 id="Step1：定义Model-function-set"><a href="#Step1：定义Model-function-set" class="headerlink" title="Step1：定义Model(function set)"></a>Step1：定义Model(function set)</h5><p>Linear Model：$y=b+\sum{w_ix_i}$</p>
+<h3 id="回归模型的基本分析"><a href="#回归模型的基本分析" class="headerlink" title="回归模型的基本分析"></a>回归模型的基本分析</h3><h4 id="Step1：定义Model-function-set"><a href="#Step1：定义Model-function-set" class="headerlink" title="Step1：定义Model(function set)"></a>Step1：定义Model(function set)</h4><p>Linear Model：$y=b+\sum{w_ix_i}$</p>
 <p>$x_i$：X的特征；</p>
 <p>$w_i$：$x_i$的权重；</p>
 <p>$b$：偏差</p>
-<h5 id="Step2：寻找一个损失函数评估该function的好坏"><a href="#Step2：寻找一个损失函数评估该function的好坏" class="headerlink" title="Step2：寻找一个损失函数评估该function的好坏"></a>Step2：寻找一个损失函数评估该function的好坏</h5><p>$x^i$：用上标来表示一个完整的object的编号，$x^i$表示第i只宝可梦</p>
+<h4 id="Step2：寻找一个损失函数评估该function的好坏"><a href="#Step2：寻找一个损失函数评估该function的好坏" class="headerlink" title="Step2：寻找一个损失函数评估该function的好坏"></a>Step2：寻找一个损失函数评估该function的好坏</h4><p>$x^i$：用上标来表示一个完整的object的编号，$x^i$表示第i只宝可梦</p>
 <p>$\hat{y}^i$：用$\hat{y}$表示一个实际观察到的object输出，上标为i表示是第i个object</p>
           <!--noindex-->
             <div class="post-button">
